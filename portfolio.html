@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – Isabelle Lemineur</title>
+  <style>
+    /* ─── RESET & BASE ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --col-bg:        #F7F4F0;
+      --col-sidebar:   #2D2825;
+      --col-nav-text:  #D8CFC4;
+      --col-active:    #B09870;
+      --col-active-bg: #3D3530;
+      --col-hover:     #908880;
+      --col-body:      #3D3530;
+      --col-heading:   #2D2825;
+      --col-link:      #7A6050;
+      --col-link-hov:  #B09870;
+      --col-accent:    #B8C8D0;
+      --col-divider:   #DDD5C5;
+      --col-tag:       #E8E0D4;
+      --col-tag-txt:   #5C4840;
+      --font:          'Georgia', 'Times New Roman', serif;
+      --font-sans:     'Helvetica Neue', 'Arial', sans-serif;
+      --sidebar-w:     260px;
+    }
+
+    html { height: 100%; font-size: 17px; }
+    body { height: 100%; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--col-bg);
+      color: var(--col-body);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ─── SIDEBAR ─── */
+    #sidebar {
+      width: var(--sidebar-w);
+      min-height: 100vh;
+      background: var(--col-sidebar);
+      color: var(--col-nav-text);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 100;
+    }
+
+    .sidebar-header {
+      padding: 36px 24px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .sidebar-name {
+      font-family: var(--font);
+      font-size: 1.25rem;
+      font-weight: normal;
+      color: #EDE5D8;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+    }
+
+    .sidebar-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--col-hover);
+      margin-top: 6px;
+    }
+
+    nav {
+      flex: 1;
+      padding: 16px 0;
+      overflow-y: auto;
+    }
+
+    nav a {
+      display: block;
+      padding: 13px 24px;
+      text-decoration: none;
+      color: var(--col-nav-text);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      border-left: 3px solid transparent;
+      transition: all 0.18s ease;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.05);
+      color: #EDE5D8;
+      border-left-color: var(--col-hover);
+    }
+
+    nav a.active {
+      background: var(--col-active-bg);
+      color: var(--col-active);
+      border-left-color: var(--col-active);
+      font-weight: 600;
+    }
+
+    .nav-num {
+      font-size: 0.7rem;
+      opacity: 0.45;
+      margin-right: 8px;
+      font-family: var(--font-sans);
+    }
+
+    .sidebar-footer {
+      padding: 20px 24px;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.2);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    #main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      min-height: 100vh;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 52px 60px 80px;
+      max-width: 900px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .tab-content.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1 {
+      font-family: var(--font);
+      font-size: 2rem;
+      font-weight: normal;
+      color: var(--col-heading);
+      margin-bottom: 6px;
+      letter-spacing: 0.01em;
+    }
+
+    .page-subtitle {
+      font-size: 0.85rem;
+      color: var(--col-hover);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+
+    h2 {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--col-heading);
+      margin: 36px 0 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      font-family: var(--font);
+      font-size: 1.1rem;
+      font-weight: normal;
+      color: var(--col-heading);
+      margin: 24px 0 8px;
+    }
+
+    p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--col-body);
+      margin-bottom: 12px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--col-divider);
+      margin: 32px 0;
+    }
+
+    /* ─── CARDS & ENTRIES ─── */
+    .entry {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--col-divider);
+    }
+    .entry:last-child { border-bottom: none; }
+
+    .entry-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .entry-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--col-heading);
+    }
+
+    .entry-date {
+      font-size: 0.78rem;
+      color: var(--col-hover);
+      font-style: italic;
+    }
+
+    .entry-body {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: #5A524A;
+      margin-top: 4px;
+    }
+
+    /* ─── TAGS ─── */
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      background: var(--col-tag);
+      color: var(--col-tag-txt);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      margin: 2px 3px 2px 0;
+    }
+
+    /* ─── LINKS ─── */
+    a {
+      color: var(--col-link);
+      text-decoration: none;
+      border-bottom: 1px solid var(--col-divider);
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    a:hover {
+      color: var(--col-link-hov);
+      border-bottom-color: var(--col-link-hov);
+    }
+
+    nav a { border-bottom: none; }
+
+    /* ─── FORMATION ITEMS ─── */
+    .formation-block {
+      padding: 20px 24px;
+      background: white;
+      border-left: 3px solid var(--col-active);
+      margin-bottom: 16px;
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .formation-block h3 {
+      margin: 0 0 6px;
+      font-size: 0.98rem;
+    }
+
+    .formation-block .meta {
+      font-size: 0.8rem;
+      color: var(--col-hover);
+      margin-bottom: 8px;
+    }
+
+    .formation-block .description {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: #5A524A;
+    }
+
+    .formation-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      font-size: 0.82rem;
+      color: var(--col-link);
+    }
+
+    /* ─── GENIALLY EMBED AREA ─── */
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-top: 62%;
+      margin-top: 24px;
+      border: 1px solid var(--col-divider);
+      background: white;
+    }
+
+    .iframe-container iframe {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      border: none;
+    }
+
+    .external-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 10px 20px;
+      background: var(--col-sidebar);
+      color: #EDE5D8;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      transition: background 0.2s;
+      border-bottom: none;
+    }
+
+    .external-link-btn:hover {
+      background: var(--col-active-bg);
+      color: var(--col-active);
+    }
+
+    /* ─── FORMATIONS CONTENT ─── */
+    .formations-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .formations-content > ul > li {
+      padding: 14px 0 14px 16px;
+      border-bottom: 1px solid var(--col-divider);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .formations-content > ul > li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--col-active);
+      font-weight: bold;
+    }
+
+    .formations-content > ul > li:last-child {
+      border-bottom: none;
+    }
+
+    /* Sous-liste (interventions annuelles) */
+    .formations-content ul ul {
+      margin-top: 10px;
+      margin-left: 8px;
+      padding-left: 16px;
+      border-left: 2px solid var(--col-divider);
+      list-style: none;
+    }
+
+    .formations-content ul ul li {
+      padding: 6px 0;
+      font-size: 0.87rem;
+      color: #5A524A;
+      line-height: 1.6;
+    }
+
+    .formations-content ul ul li::before {
+      content: none;
+    }
+
+
+    /* ─── SOUS-ONGLETS (lettres de recommandation) ─── */
+    .subtab-nav {
+      display: flex;
+      gap: 0;
+      margin-bottom: 28px;
+      border-bottom: 2px solid var(--col-divider);
+    }
+    .subtab-btn {
+      background: none;
+      border: none;
+      padding: 10px 24px;
+      font-size: 0.88rem;
+      font-family: var(--font-sans);
+      color: var(--col-hover);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      letter-spacing: 0.04em;
+      transition: all 0.18s;
+    }
+    .subtab-btn:hover { color: var(--col-body); }
+    .subtab-btn.active {
+      color: var(--col-active);
+      border-bottom-color: var(--col-active);
+      font-weight: 600;
+    }
+    .subtab-pane { display: none; }
+    .subtab-pane.active { display: block; }
+
+    /* ─── TÉMOIGNAGES ─── */
+    .testimonial {
+      padding: 20px 24px;
+      background: white;
+      border-left: 3px solid var(--col-accent);
+      margin-bottom: 16px;
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .testimonial-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      margin-bottom: 10px;
+      align-items: baseline;
+    }
+    .testimonial-author {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--col-heading);
+    }
+    .testimonial-role {
+      font-size: 0.8rem;
+      color: var(--col-hover);
+      font-style: italic;
+    }
+    .testimonial-date {
+      font-size: 0.78rem;
+      color: #aaa;
+      margin-left: auto;
+    }
+    .testimonial-quote {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--col-body);
+      font-style: italic;
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+    .year-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--col-active);
+      font-weight: 700;
+      margin: 28px 0 10px;
+    }
+
+    /* ─── DIPLÔMES ─── */
+    .diplome-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .diplome-card {
+      background: white;
+      border: 1px solid var(--col-divider);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .diplome-card iframe {
+      width: 100%;
+      height: 340px;
+      border: none;
+      display: block;
+    }
+    .diplome-info {
+      padding: 14px 16px;
+      border-top: 1px solid var(--col-divider);
+    }
+    .diplome-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--col-heading);
+      margin-bottom: 2px;
+    }
+    .diplome-institution {
+      font-size: 0.78rem;
+      color: var(--col-hover);
+      margin-bottom: 8px;
+    }
+    .diplome-year {
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+    .btn-view-pdf {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--col-link);
+      border-bottom: 1px solid var(--col-divider);
+    }
+
+    /* ─── CERTIFICATIONS / BADGES ─── */
+    .badge-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: white;
+      border: 1px solid var(--col-divider);
+      border-radius: 4px;
+      margin-top: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+      border-bottom: 1px solid var(--col-divider);
+    }
+    .badge-card:hover {
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border-bottom-color: var(--col-divider);
+    }
+    .badge-icon {
+      width: 64px;
+      height: 64px;
+      background: #1a5f6a;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: white;
+      font-size: 1.6rem;
+    }
+    .badge-text-block { flex: 1; }
+    .badge-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--col-heading);
+      margin-bottom: 4px;
+    }
+    .badge-card-desc {
+      font-size: 0.82rem;
+      color: var(--col-hover);
+      line-height: 1.5;
+    }
+    .badge-arrow {
+      font-size: 1.1rem;
+      color: var(--col-hover);
+    }
+
+    /* ─── 2ÈME LIEN GENIALLY ─── */
+    .genially-block {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--col-divider);
+    }
+
+    /* ─── LIENS EN GRAS DANS LES FORMATIONS ─── */
+    .formations-content a { font-weight: 700; }
+
+    /* ─── CARTE CV TÉLÉCHARGEABLE ─── */
+    .cv-card {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+      background: white;
+      border: 1px solid var(--col-divider);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      margin-top: 8px;
+    }
+    .cv-card-preview {
+      flex: 0 0 180px;
+      border-right: 1px solid var(--col-divider);
+    }
+    .cv-card-preview iframe {
+      width: 100%;
+      height: 260px;
+      border: none;
+      display: block;
+    }
+    .cv-card-info {
+      flex: 1;
+      padding: 28px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    .cv-card-title {
+      font-family: var(--font);
+      font-size: 1.15rem;
+      color: var(--col-heading);
+    }
+    .cv-card-subtitle {
+      font-size: 0.88rem;
+      color: var(--col-hover);
+      margin-top: -6px;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--col-sidebar);
+      color: #EDE5D8 !important;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      border-bottom: none !important;
+      text-decoration: none;
+      transition: background 0.2s;
+      width: fit-content;
+    }
+    .btn-download:hover {
+      background: var(--col-active-bg);
+      color: var(--col-active) !important;
+    }
+    .btn-open-cv {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--col-link);
+      border-bottom: 1px solid var(--col-divider);
+      text-decoration: none;
+      width: fit-content;
+      transition: color 0.15s;
+    }
+    .btn-open-cv:hover { color: var(--col-link-hov); }
+
+    /* ─── PLACEHOLDER ─── */
+    .placeholder {
+      padding: 40px;
+      background: white;
+      border: 1px dashed var(--col-divider);
+      border-radius: 4px;
+      text-align: center;
+      color: var(--col-hover);
+      font-size: 0.88rem;
+      font-style: italic;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      #sidebar {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+      }
+      #main { margin-left: 0; }
+      body { flex-direction: column; }
+      .tab-content { padding: 32px 24px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<aside id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-name">Isabelle Lemineur</div>
+    <div class="sidebar-title">Portfolio professionnel</div>
+  </div>
+
+  <nav>
+    <a class="active" onclick="showTab('cv')" href="#cv">
+      <span class="nav-num">01</span>CV | Diplômes | Certifications
+    </a>
+    <a onclick="showTab('etudiants')" href="#etudiants">
+      <span class="nav-num">02</span>Formations étudiants
+    </a>
+    <a onclick="showTab('enseignants')" href="#enseignants">
+      <span class="nav-num">03</span>Formations enseignants
+    </a>
+    <a onclick="showTab('competences')" href="#competences">
+      <span class="nav-num">04</span>Compétences numériques &amp; IA
+    </a>
+    <a onclick="showTab('recommandations')" href="#recommandations">
+      <span class="nav-num">05</span>Lettres de recommandation
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">ilemineur@he2b.be<span style="display:block;font-size:0.63rem;line-height:1.5;margin-top:10px;opacity:0.4;">Application créée par Isabelle Lemineur<br>avec l'aide de <a href="https://claude.ai" target="_blank" style="color:inherit;border:none;">Claude.ai</a> / Cowork</span></div>
+</aside>
+
+<!-- ── MAIN ── -->
+<main id="main">
+
+  <!-- TAB 1 : CV -->
+  <section id="tab-cv" class="tab-content active">
+    <h1>CV | Diplômes | Certifications</h1>
+    <div class="page-subtitle">Parcours académique et professionnel</div>
+
+    <h2>CV</h2>
+
+    <div class="cv-card">
+      <div class="cv-card-preview">
+        <iframe src="cv_isabelle_lemineur.pdf" title="CV Isabelle Lemineur"></iframe>
+      </div>
+      <div class="cv-card-info">
+        <div class="cv-card-title">Curriculum Vitae</div>
+        <div class="cv-card-subtitle">Isabelle Lemineur</div>
+        <a class="btn-download" href="cv_isabelle_lemineur.pdf" download="CV_Isabelle_Lemineur.pdf">
+          ↓ Télécharger le CV
+        </a>
+        <a class="btn-open-cv" href="cv_isabelle_lemineur.pdf" target="_blank">
+          ↗ Ouvrir en plein écran
+        </a>
+      </div>
+    </div>
+
+    <h2>Certifications</h2>
+
+    <a class="badge-card" href="https://openbadgepassport.com/app/badge" target="_blank" rel="noopener">
+      <div class="badge-icon">🏅</div>
+      <div class="badge-text-block">
+        <div class="badge-card-title">Mes badges numériques — OpenBadgePassport</div>
+        <div class="badge-card-desc">
+          Badges obtenus dans le cadre du parcours <strong>Référent·e IA en éducation</strong>
+          (AI4EDU — TechnofuturTIC) et d'autres formations certifiantes aux usages numériques.
+        </div>
+      </div>
+      <div class="badge-arrow">↗</div>
+    </a>
+
+    <h2>Diplômes</h2>
+
+    <div class="diplome-grid">
+
+      <div class="diplome-card">
+        <iframe src="diplome_ulb.pdf" title="Licence en droit - ULB" style="height:200px"></iframe>
+        <div class="diplome-info">
+          <div class="diplome-title">Licence en droit</div>
+          <div class="diplome-institution">Université Libre de Bruxelles (ULB)</div>
+          <div class="diplome-year">1989 — avec distinction</div>
+          <a class="btn-view-pdf" href="diplome_ulb.pdf" target="_blank">↗ Ouvrir le diplôme</a>
+        </div>
+      </div>
+
+      <div class="diplome-card">
+        <iframe src="diplome_vub.pdf" title="Licenciaat in de Rechtsgeleerdheid - VUB" style="height:200px"></iframe>
+        <div class="diplome-info">
+          <div class="diplome-title">Licentiaat Rechtsgeleerdheid</div>
+          <div class="diplome-institution">Vrije Universiteit Brussel (VUB)</div>
+          <div class="diplome-year">Droit — onderdeel avec économie</div>
+          <a class="btn-view-pdf" href="diplome_vub.pdf" target="_blank">↗ Ouvrir le diplôme</a>
+        </div>
+      </div>
+
+      <div class="diplome-card">
+        <iframe src="diplome_capaes.pdf" title="CAPAES" style="height:200px"></iframe>
+        <div class="diplome-info">
+          <div class="diplome-title">CAPAES</div>
+          <div class="diplome-institution">Communauté française de Belgique<br>Institut Roger Guilbert — Promotion sociale</div>
+          <div class="diplome-year">Certificat d'aptitude pédagogique — enseignement supérieur · 2019</div>
+          <a class="btn-view-pdf" href="diplome_capaes.pdf" target="_blank">↗ Ouvrir le diplôme</a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TAB 2 : FORMATIONS ÉTUDIANTS -->
+  <section id="tab-etudiants" class="tab-content">
+    <h1>Formations des étudiants</h1>
+    <div class="page-subtitle">Usages numériques et utilisation raisonnée de l'IA</div>
+    <!-- CONTENT_ETUDIANTS_START -->
+<div class="formations-content">
+
+<ul>
+<li>Novembre 2026 : «  <a href="https://www.canva.com/design/DAG7GLFkxFk/reeayP3Mzs9W-da5ZN-cjg/view?utm_content=DAG7GLFkxFk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1dfebfa022" target="_blank" rel="noopener">Introduction à l'IA dans l'enseignement supérieur »</a>. Cet atelier a été dispensé à l'ISES pour les étudiants du 1er bachelier en immobilier. Il a pour objectif d'informer les étudiants sur le fonctionnement de l'IA, sur les risques et les limites de l’IA. Il a également pour objet de présenter aux étudiants la Charte d’usage de l’IA en vigueur dans la Haute école (Charte rédigée par mes soins).</li>
+<li>Novembre 2026 : «  <a href="https://view.genially.com/69763ad65528b3a65708bd2c/presentation-des-prompts-pour-reviser" target="_blank" rel="noopener">Réviser avec l’IA </a>». Cet atelier est centré sur la révision des matières de cours, tâche pour laquelle les étudiants utilisent fréquemment l’IA. L’IA est ici utilisée dans une démarche de méta-cognition. Faire réfléchir les étudiants sur les différentes démarches de révision destinées à s’approprier une matière, tout en utilisant cette réflexion pour nourrir des prompts bien construits. Cet atelier pratique prend la forme d’une séance d'explications sur la rédaction de prompts efficaces. Il est complété par la remise d’un <a href="https://script.google.com/macros/s/AKfycbxUXwiyr99VWm0Gc15uPmWM3d578hWdR6eVkj9hsRJuRkuGVBRjIBC2sgQ1V9t0NhBP/exec" target="_blank" rel="noopener">outil</a> – sous forme d’application – destiné à guider les étudiants dans la rédaction d’un prompt de révision. Dans cet atelier, l’engagement est recherché, l’étudiant étant motivé la perspective de l’usage d’un prompt efficace pour l’aider dans son apprentissage.</li>
+<li>Dans le cadre du service d'aide à la réussite, j’ai créé des chatbots de révision de matières juridiques (<a href="https://chatgpt.com/g/g-67d83841d2c08191baa4cbe6f2bb0fb2-procedure-civile-sans-acces-a-internet" target="_blank" rel="noopener">exemple</a>). L’objectif est de favoriser l’individualisation des apprentissages. Ces chatbots ont été utilisés par les étudiants en séances d’aide à la réussite ou de manière autonome à domicile. Les étudiants ont été informés sur la manière dont le chatbot a été créé. Ils ont ainsi pu prendre conscience, en tant qu’utilisateurs des chatbots, sur la plus-value d’un prompt complet et structuré.</li>
+<li>Dans le cadre du service d'aide à la réussite, j’ai montré aux étudiants comment utiliser une carte mentale pour faciliter la structuration des savoirs (<a href="https://xmind.app/m/6bdFGQ/" target="_blank" rel="noopener">vers le support de cours</a>). Les étudiants ont été orientés vers des logiciels en open source, type Framindmap.</li>
+<li>Sur la page de cours du Service d’aide aux étudiants sur le Moodle de l’ISES, une section spécifique a été créée sur l’usage de l’IA (<a href="https://drive.google.com/file/d/1zs2G3ewX-TBd3XmTq-mt7DgfOoqAYPV2/view?usp=share_link" target="_blank" rel="noopener">voir l’image du cours</a>).</li>
+<li>Octobre 2025 : dans le cadre de la journée d'accueil au sein de l'ISES (HE2B), j’ai dispensé un atelier à destination des étudiants pour leur apprendre à utiliser Moodle (<a href="https://drive.google.com/file/d/1UGftx4npeMjXVb5ZFH_8ChJHaA0NQpT1/view?usp=share_link" target="_blank" rel="noopener">voir l’image du cours</a>).</li>
+<li>Octobre 2024 : dans le cadre de la journée d'accueil au sein de l'ISES (HE2B), j’ai dispensé un atelier à destination des étudiants pour leur apprendre à prendre note. Cet atelier est appuyé par une <a href="https://view.genially.com/6502b200c8cd260011345548" target="_blank" rel="noopener">présentation interactive</a> (créée sur Genially). Cette présentation interactive contient des vidéos montant la manière de prendre note de plusieurs manières différentes (de manière classique sur papier ou sous forme de cartes mentales). Ce support a été mis à disposition des étudiants sur la page du Service d’aide aux étudiants sur le Moodle de l’ISES (<a href="https://drive.google.com/file/d/1lm-2FMg8aUo_uNvCLrqbLRSHhjkC_qB8/view?usp=share_link" target="_blank" rel="noopener">voir l’image du cours</a>)</li>
+<li>Dans le cadre de mon enseignement de la méthodologie juridique, j'apprends aux étudiants à :</li>
+<li>Maîtriser l'utilisation des banques de données juridiques informatiques. De nombreuses vidéos ont été créées à cette fin. (<a href="https://youtu.be/8ZS8NW708v4?si=4tX1DPbzDgAAAkRO" target="_blank" rel="noopener">exemple</a>). Toutes mes vidéos sont accessibles à partir de cette <a href="https://xmind.app/m/pNDn9p" target="_blank" rel="noopener">carte mentale</a></li>
+<li>Utiliser des logiciels de gestion de travail et de projet (ex. Evernote, asana, etc..</li>
+<li><a href="https://www.canva.com/design/DAG-8mywSrE/n3Om6pRDP2MJ7PQ6cPrvnQ/view?utm_content=DAG-8mywSrE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc50caef67d" target="_blank" rel="noopener">Utiliser l'intelligence artificielle avec intelligence</a>. Cette leçon a été créée pour confronter les étudiants aux limites de l’usage de l’IA pour la rédaction de travaux académiques. Les étudiants reçoivent, tout d'abord, un enseignement sur le prompt avancé, dans le domaine juridique. Sur base d'un prompt de qualité, ils doivent demander à l’IA de produire un cas pratique et solliciter sa résolution. Les étudiants doivent ensuite réaliser, au travers de l’approche traditionnelle, une recherche documentaire de sources juridiques pour résoudre le cas pratique généré par l'IA. Ils sont ensuite amenés à examiner la solution proposée par l’IA pour en mettre en évidence ses forces, ses faiblesses, ses erreurs et ses limites.</li>
+</ul>
+
+</div>
+<!-- CONTENT_ETUDIANTS_END -->
+  </section>
+
+  <!-- TAB 3 : FORMATIONS ENSEIGNANTS -->
+  <section id="tab-enseignants" class="tab-content">
+    <h1>Formations des enseignants</h1>
+    <div class="page-subtitle">Usages numériques pédagogiques et utilisation de l'IA</div>
+    <!-- CONTENT_ENSEIGNANTS_START -->
+<div class="formations-content">
+
+<ul>
+<li>Octobre 2025 : participation au festival des pédagogies numérique à Spa (Ludovia). Présentation de mon travail «  <a href="https://www.canva.com/design/DAG-8hqifl4/ScGzutvd01TAHN49YIz85w/view?utm_content=DAG-8hqifl4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h989912dd71" target="_blank" rel="noopener">Utilisation de chatbots de coaching dans l'enseignement supérieur</a> »</li>
+<li>Formations permanentes sous la forme de vidéos (utilisation de <a href="https://youtu.be/D3Q_K2O3m_0" target="_blank" rel="noopener">moodle</a>, de <a href="https://youtu.be/MlgYLdqARbo" target="_blank" rel="noopener">gesetu</a>, <a href="https://youtu.be/93MvCbOhTB0" target="_blank" rel="noopener">d’hyperplanning</a>, <a href="https://youtu.be/zJ-bs32pHC0" target="_blank" rel="noopener">de l'IA</a>, <a href="https://youtu.be/KdhO4T8Wu94" target="_blank" rel="noopener">utilisation du matériel RRF</a> - les vidéos en hyperliens ne sont que des exemples). Toutes ces vidéos sont déposées sur un site Moodle à destination des enseignants de la HE2B (<a href="https://drive.google.com/drive/folders/1T4dMJu5Llt6Nm1EyGCHFqPjUEzHolZRT?usp=share_link" target="_blank" rel="noopener">voir des captures d’écran des pages Moodle</a>)</li>
+<li>Formations individuelles à la demande sur sollicitation des collègues (voir mails de satisfaction)</li>
+<li>Interventions lors des demi-journées annuelles de formation à l'usage du numérique et de l'intelligence artificielle, organisées par la cellule numérique de la HE2B (<a href="https://drive.google.com/drive/folders/1h_s3uh_mvkJ48iT-3H0mYCPGZlEzmtNp?usp=share_link" target="_blank" rel="noopener">vers les invitations aux formations</a>):
+  <ul>
+    <li>2026 : <a href="https://view.genially.com/69b9426c2d5c5564aa6820f4/presentation-optimiser-lutilisation-de-lia-pour-les-etudiants" target="_blank" rel="noopener">Optimiser l’utilisation de l’IA pour les étudiants</a></li>
+    <li>2025 :<a href="https://view.genially.com/67978defac01fa20ab64d755" target="_blank" rel="noopener">Découverte d’outils et prompts avancés</a></li>
+    <li>2025 : co-animation d’une table ronde « éthique et IA : enjeux liés à nos pratiques pédagogiques. Un syllabus de documentation a été mis à disposition des participants (<a href="https://drive.google.com/drive/folders/1QAsd3W6B0a60AN7_f5klExtFkBThXE1-?usp=share_link" target="_blank" rel="noopener">vers le syllabus</a>)</li>
+    <li>2023 : <a href="https://youtu.be/-HWglP1YWEY" target="_blank" rel="noopener">Utiliser Padlet</a></li>
+    <li>2022 : <a href="https://youtu.be/d0VRRdqzoCc" target="_blank" rel="noopener">Concevoir un parcours pédagogique avec Moodle</a></li>
+  </ul>
+</li>
+<li>Mai 2023 : intervention lors de la journée de l'innovation pédagogique à l’UMons. Présentation de mon projet «  <a href="https://drive.google.com/drive/folders/1iDWnnCdeShZzuYrOjwXdFLOTcdQE7eCH?usp=share_link" target="_blank" rel="noopener">Remédiation en méthodologie juridique à l'aide de Moodle</a> »</li>
+<li>Support aux enseignants, sous la forme de permanences, notamment pendant la période du COVID, au travers de l’équipe numérique de la HE2B (cellule e-HE2B).</li>
+</ul>
+</div>
+<!-- CONTENT_ENSEIGNANTS_END -->
+  </section>
+
+  <!-- TAB 4 : COMPÉTENCES NUMÉRIQUES & IA -->
+  <section id="tab-competences" class="tab-content">
+    <h1>Compétences numériques &amp; IA</h1>
+    <div class="page-subtitle">Dossier de compétences</div>
+
+    <p>
+      Dossier déposé en vue d'obtenir la certification
+      <strong>Référent IA — EDULAB</strong>.
+    </p>
+    <p>
+      Cliquez sur le bouton ci-dessous pour ouvrir le dossier interactif,
+      ou consultez-le directement intégré dans la page.
+    </p>
+
+    <a class="external-link-btn"
+       href="https://view.genially.com/697645bd1a7a505250c982fb/personal-branding-isabelle-lemineur"
+       target="_blank" rel="noopener">
+      ↗ Ouvrir le dossier Genially
+    </a>
+
+    <div class="iframe-container">
+      <iframe
+        src="https://view.genially.com/697645bd1a7a505250c982fb/personal-branding-isabelle-lemineur"
+        title="Dossier Référent IA – EDULAB – Isabelle Lemineur"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <p style="margin-top:20px; font-size:0.82rem; color:var(--col-hover);">
+      Si l'aperçu intégré ne s'affiche pas, utilisez le bouton ci-dessus pour
+      l'ouvrir dans un nouvel onglet.
+    </p>
+
+    <div class="genially-block">
+      <p>
+        Référentiel interactif de mes <strong>compétences numériques</strong>
+        développées dans le cadre de l'enseignement et de l'accompagnement pédagogique.
+      </p>
+      <a class="external-link-btn"
+         href="https://view.genially.com/69ba869b93944ee8b51c9e1c/guide-competences-numeriques"
+         target="_blank" rel="noopener">
+        ↗ Ouvrir le dossier Genially
+      </a>
+      <div class="iframe-container" style="margin-top:16px;">
+        <iframe
+          src="https://view.genially.com/69ba869b93944ee8b51c9e1c/guide-competences-numeriques"
+          title="Guide compétences numériques — Isabelle Lemineur"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 5 : LETTRES DE RECOMMANDATION -->
+  <section id="tab-recommandations" class="tab-content">
+    <h1>Lettres de recommandation</h1>
+    <div class="page-subtitle">Témoignages et recommandations</div>
+
+
+    <div class="subtab-nav">
+      <button class="subtab-btn active" onclick="showSubtab(this,'ens')">Enseignants</button>
+      <button class="subtab-btn" onclick="showSubtab(this,'etu')">Étudiants</button>
+    </div>
+
+    <!-- SOUS-ONGLET ENSEIGNANTS -->
+    <div id="subtab-ens" class="subtab-pane active">
+
+      <p style="font-size:0.88rem;color:var(--col-hover);margin-bottom:24px;">
+        Témoignages et marques de reconnaissance reçus de collègues enseignants
+        de la HE2B (2020–2026).
+      </p>
+
+      <div class="year-label">2026</div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Pascal Vekeman</span>
+          <span class="testimonial-role">Maître-assistant — HE2B ISES</span>
+          <span class="testimonial-date">13 février 2026</span>
+        </div>
+        <p class="testimonial-quote">« Génial ! Clair et précis. Merci. »</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Laura Dutillieut</span>
+          <span class="testimonial-role">Maître-assistante — HE2B ISES</span>
+          <span class="testimonial-date">16 février 2026</span>
+        </div>
+        <p class="testimonial-quote">« Merci beaucoup pour ton travail ! » — et sollicitation pour résoudre un problème de plugins suite à une mise à jour Moodle, reconnaissant Isabelle comme interlocutrice privilégiée.</p>
+      </div>
+
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Alain Malherbe</span>
+          <span class="testimonial-role">Enseignant — HE2B ISES</span>
+          <span class="testimonial-date">19 février 2026</span>
+        </div>
+        <p class="testimonial-quote">« Un grand merci pour l'octroi de l'accès. Cela fonctionne parfaitement. »</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Eric Robette</span>
+          <span class="testimonial-role">Enseignant &amp; Co-coordinateur ISES — HE2B</span>
+          <span class="testimonial-date">5 février 2026</span>
+        </div>
+        <p class="testimonial-quote">« Merci pour ton conseil. Belle journée ! » — après proposition d'une solution technique pour la gestion des évaluations à distance.</p>
+      </div>
+
+      <div class="year-label">2025</div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Michaël Van Royen</span>
+          <span class="testimonial-role">Co-référent équipe e-HE2B</span>
+          <span class="testimonial-date">12 septembre 2025</span>
+        </div>
+        <p class="testimonial-quote">« Merci pour ta super présentation lors de la rentrée. »</p>
+      </div>
+
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Jonathan Smets</span>
+          <span class="testimonial-role">Équipe e-HE2B</span>
+          <span class="testimonial-date">19 décembre 2025</span>
+        </div>
+        <p class="testimonial-quote">« Le travail d'Isabelle sur l'état des lieux de Moodle est vraiment génial et permet d'y voir clair. »</p>
+      </div>
+
+
+      <div class="year-label">2024</div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Dominique Weber</span>
+          <span class="testimonial-role">Enseignante — HE2B</span>
+          <span class="testimonial-date">2 juillet 2024</span>
+        </div>
+        <p class="testimonial-quote">Remercie Isabelle pour son « retour très intéressant » et pour tout ce qu'elle fait pour « guider » les collègues.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">François-Xavier Dubuisson</span>
+          <span class="testimonial-role">Enseignant — HE2B ISES</span>
+          <span class="testimonial-date">2 juillet 2024</span>
+        </div>
+        <p class="testimonial-quote">Suite à une démonstration sur l'IA et la question de recherche, il indique s'être enfin mis à l'expérimentation de ChatGPT grâce à ses conseils.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Céline Francis</span>
+          <span class="testimonial-role">Enseignante — HE2B ISES</span>
+          <span class="testimonial-date">7 octobre 2024</span>
+        </div>
+        <p class="testimonial-quote">Remercie Isabelle pour toutes les informations partagées concernant Moodle.</p>
+      </div>
+
+      <div class="year-label">2023</div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Nathalie Timmerman</span>
+          <span class="testimonial-role">Maître-Assistante Anglais-Néerlandais, Service d'Aide à la Réussite — HE2B ISES</span>
+          <span class="testimonial-date">21 juin 2023</span>
+        </div>
+        <p class="testimonial-quote">« Un tout grand merci Chère Isabelle pour ton tuto très clair et à la voix charmante. Je viens de créer ma section prise de rendez-vous 🤩 »</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">François-Xavier Dubuisson</span>
+          <span class="testimonial-role">Enseignant — HE2B ISES</span>
+          <span class="testimonial-date">Juin 2023</span>
+        </div>
+        <p class="testimonial-quote">« Merci pour ce tutoriel clair et pratique :-) »</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Manon Jaumotte</span>
+          <span class="testimonial-role">Enseignante — HE2B ISES</span>
+          <span class="testimonial-date">6 novembre 2023</span>
+        </div>
+        <p class="testimonial-quote">Félicite Isabelle pour ses vidéos pédagogiques sur Moodle : « vraiment super ». Elle s'en est inspirée pour son propre enseignement.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Johanne Corduant</span>
+          <span class="testimonial-role">Maître-assistante en anglais/néerlandais — HE2B Campus ISES</span>
+          <span class="testimonial-date">1 septembre 2023</span>
+        </div>
+        <p class="testimonial-quote">« Merci pour cette aide précieuse pour pouvoir réutiliser nos cours sur Moodle. »</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Anne Welsch</span>
+          <span class="testimonial-role">Enseignante — HE2B ISES</span>
+          <span class="testimonial-date">31 août 2023</span>
+        </div>
+        <p class="testimonial-quote">« Merci Isabelle pour cette belle palette de bonnes idées. Belle rentrée. »</p>
+      </div>
+
+      <div class="year-label">2022</div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Olivier Ducruet</span>
+          <span class="testimonial-role">Enseignant — ISEK (HE2B)</span>
+          <span class="testimonial-date">22 avril 2022</span>
+        </div>
+        <p class="testimonial-quote">Suite à une visite avec l'équipe numérique, il a été « conquis par le Format tuiles sur Moodle » et l'a immédiatement installé pour ses activités d'apprentissage.</p>
+      </div>
+
+      <div class="year-label">2021</div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Sigrid Theunissen</span>
+          <span class="testimonial-role">Enseignante — ISEK (HE2B)</span>
+          <span class="testimonial-date">21 juin 2021</span>
+        </div>
+        <p class="testimonial-quote">« GÉNIALE !! » — commentaire enthousiaste sur une vidéo tutoriel expliquant les procédures d'inscription sur Moodle.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Sigrid Theunissen</span>
+          <span class="testimonial-role">Enseignante — ISEK (HE2B)</span>
+          <span class="testimonial-date">24 septembre 2021</span>
+        </div>
+        <p class="testimonial-quote">« Un tout grand merci pour ton aide précieuse. »</p>
+      </div>
+
+
+      <div class="year-label">2020</div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Mélanie De Cock</span>
+          <span class="testimonial-role">Enseignante — HE2B</span>
+          <span class="testimonial-date">19 novembre 2020</span>
+        </div>
+        <p class="testimonial-quote">« Merciiii » — message de gratitude reçu suite à l'annonce des premières sessions de formation Moodle durant la période de confinement.</p>
+      </div>
+
+    </div><!-- /subtab-ens -->
+
+    <!-- SOUS-ONGLET ÉTUDIANTS -->
+    <div id="subtab-etu" class="subtab-pane">
+      <div class="placeholder">
+        Les témoignages d'étudiants seront ajoutés ici lors d'une prochaine session.
+      </div>
+    </div><!-- /subtab-etu -->
+
+  </section>
+
+</main>
+
+<script>
+  // ─── TAB NAVIGATION ───
+  function showTab(id) {
+    // Hide all sections
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
+
+    // Show selected
+    document.getElementById('tab-' + id).classList.add('active');
+
+    // Activate nav link
+    const links = document.querySelectorAll('nav a');
+    links.forEach(a => {
+      if (a.getAttribute('href') === '#' + id) a.classList.add('active');
+    });
+
+    // Update URL hash without scrolling
+    history.replaceState(null, '', '#' + id);
+    return false;
+  }
+
+  // ─── SOUS-ONGLETS ───
+  function showSubtab(btn, id) {
+    document.querySelectorAll('.subtab-pane').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.subtab-btn').forEach(el => el.classList.remove('active'));
+    const pane = document.getElementById('subtab-' + id);
+    if (pane) pane.classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+
+  // Handle direct URL hash on load
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = location.hash.replace('#', '');
+    if (hash && document.getElementById('tab-' + hash)) {
+      showTab(hash);
+    }
+  });
+
+  // Prevent page jump on nav link click
+  document.querySelectorAll('nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+    });
+  });
+</script>
+
+</body>
+</html>
