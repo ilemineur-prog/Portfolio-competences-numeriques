@@ -625,6 +625,94 @@
     }
     .btn-open-cv:hover { color: var(--col-link-hov); }
 
+
+    /* ─── PAGE D'ACCUEIL ─── */
+    .home-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 36px;
+    }
+    @media (max-width: 1100px) { .home-grid { grid-template-columns: repeat(2, 1fr); } }
+    .home-card {
+      background: white;
+      border: 1px solid var(--col-divider);
+      border-radius: 6px;
+      padding: 28px 24px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.18s;
+      user-select: none;
+    }
+    .home-card:hover {
+      box-shadow: 0 8px 26px rgba(0,0,0,0.13);
+      transform: translateY(-3px);
+    }
+    .home-card-num {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--col-active);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .home-card-title {
+      font-family: var(--font);
+      font-size: 1.05rem;
+      color: var(--col-heading);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .home-card-desc {
+      font-size: 0.82rem;
+      color: var(--col-hover);
+      line-height: 1.55;
+    }
+    .home-card-contact {
+      border-left: 3px solid var(--col-active);
+    }
+
+    /* ─── FORMULAIRE CONTACT ─── */
+    .contact-wrapper { max-width: 620px; }
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--col-heading);
+      letter-spacing: 0.04em;
+    }
+    .form-input {
+      padding: 10px 14px;
+      border: 1px solid var(--col-divider);
+      border-radius: 3px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--col-body);
+      background: white;
+      transition: border-color 0.15s;
+    }
+    .form-input:focus { outline: none; border-color: var(--col-active); }
+    .form-textarea { resize: vertical; min-height: 130px; }
+    .btn-send {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--col-sidebar);
+      color: #EDE5D8;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: fit-content;
+      font-family: var(--font-sans);
+    }
+    .btn-send:hover { background: var(--col-active-bg); color: var(--col-active); }
+
     /* ─── PLACEHOLDER ─── */
     .placeholder {
       padding: 40px;
@@ -656,11 +744,14 @@
 <aside id="sidebar">
   <div class="sidebar-header">
     <div class="sidebar-name">Isabelle Lemineur</div>
-    <div class="sidebar-title"> professionnel</div>
+    <div class="sidebar-title">Portfolio professionnel</div>
   </div>
 
   <nav>
-    <a class="active" onclick="showTab('cv')" href="#cv">
+    <a class="active" onclick="showTab('accueil')" href="#accueil">
+      <span class="nav-num">⌂</span>Accueil
+    </a>
+    <a onclick="showTab('cv')" href="#cv">
       <span class="nav-num">01</span>CV | Diplômes | Certifications
     </a>
     <a onclick="showTab('etudiants')" href="#etudiants">
@@ -675,16 +766,66 @@
     <a onclick="showTab('recommandations')" href="#recommandations">
       <span class="nav-num">05</span>Lettres de recommandation
     </a>
+    <a onclick="showTab('contact')" href="#contact">
+      <span class="nav-num">✉</span>Contact
+    </a>
   </nav>
 
-  <div class="sidebar-footer">ilemineur@he2b.be<span style="display:block;font-size:0.63rem;line-height:1.5;margin-top:10px;opacity:0.4;">Application créée par Isabelle Lemineur<br>avec l'aide de <a href="https://claude.ai" target="_blank" style="color:inherit;border:none;">Claude.ai</a> / Cowork</span></div>
+  <div class="sidebar-footer"><span style="display:block;font-size:0.72rem;line-height:1.7;opacity:0.6;">Application créée par<br><strong style="color:#EDE5D8;">Isabelle Lemineur</strong><br>avec l'aide de<br><a href="https://claude.ai" target="_blank" style="color:var(--col-active);border:none;font-weight:600;">Claude.ai</a> &amp; <span style="color:var(--col-active);font-weight:600;">Cowork</span></span></div>
 </aside>
 
 <!-- ── MAIN ── -->
 <main id="main">
 
+
+  <!-- TAB 0 : ACCUEIL -->
+  <section id="tab-accueil" class="tab-content active">
+    <h1>Portfolio professionnel</h1>
+    <div class="page-subtitle">Isabelle Lemineur — Chargée de cours · HE2B ISES</div>
+
+    <div class="home-grid">
+
+      <div class="home-card" onclick="showTab('cv')" role="button" tabindex="0">
+        <div class="home-card-num">01</div>
+        <div class="home-card-title">CV | Diplômes | Certifications</div>
+        <div class="home-card-desc">Parcours académique et professionnel</div>
+      </div>
+
+      <div class="home-card" onclick="showTab('etudiants')" role="button" tabindex="0">
+        <div class="home-card-num">02</div>
+        <div class="home-card-title">Formations des étudiants</div>
+        <div class="home-card-desc">Usages numériques et utilisation raisonnée de l'IA</div>
+      </div>
+
+      <div class="home-card" onclick="showTab('enseignants')" role="button" tabindex="0">
+        <div class="home-card-num">03</div>
+        <div class="home-card-title">Formations des enseignants</div>
+        <div class="home-card-desc">Usages numériques pédagogiques et IA</div>
+      </div>
+
+      <div class="home-card" onclick="showTab('competences')" role="button" tabindex="0">
+        <div class="home-card-num">04</div>
+        <div class="home-card-title">Compétences numériques &amp; IA</div>
+        <div class="home-card-desc">Dossier de compétences</div>
+      </div>
+
+      <div class="home-card" onclick="showTab('recommandations')" role="button" tabindex="0">
+        <div class="home-card-num">05</div>
+        <div class="home-card-title">Lettres de recommandation</div>
+        <div class="home-card-desc">Témoignages et recommandations</div>
+      </div>
+
+      <div class="home-card home-card-contact" onclick="showTab('contact')" role="button" tabindex="0">
+        <div class="home-card-num">✉</div>
+        <div class="home-card-title">Contact</div>
+        <div class="home-card-desc">Envoyer un message</div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- TAB 1 : CV -->
-  <section id="tab-cv" class="tab-content active">
+  <section id="tab-cv" class="tab-content">
     <h1>CV | Diplômes | Certifications</h1>
     <div class="page-subtitle">Parcours académique et professionnel</div>
 
@@ -706,15 +847,15 @@
       </div>
     </div>
 
-    <h2>Certifications</h2>
+    <h2>Certification</h2>
 
-    <a class="badge-card" href="https://openbadgepassport.com/app/badge" target="_blank" rel="noopener">
+    <a class="badge-card" href="open_badges.pdf" target="_blank" rel="noopener">
       <div class="badge-icon">🏅</div>
       <div class="badge-text-block">
         <div class="badge-card-title">Mes badges numériques — OpenBadgePassport</div>
         <div class="badge-card-desc">
           Badges obtenus dans le cadre du parcours <strong>Référent·e IA en éducation</strong>
-          (AI4EDU — TechnofuturTIC) et d'autres formations certifiantes aux usages numériques.
+          (AI4EDU — TechnofuturTIC).
         </div>
       </div>
       <div class="badge-arrow">↗</div>
@@ -873,6 +1014,7 @@
     <div class="subtab-nav">
       <button class="subtab-btn active" onclick="showSubtab(this,'ens')">Enseignants</button>
       <button class="subtab-btn" onclick="showSubtab(this,'etu')">Étudiants</button>
+      <button class="subtab-btn" onclick="showSubtab(this,'autres')">Autres professionnels</button>
     </div>
 
     <!-- SOUS-ONGLET ENSEIGNANTS -->
@@ -1067,12 +1209,107 @@
 
     <!-- SOUS-ONGLET ÉTUDIANTS -->
     <div id="subtab-etu" class="subtab-pane">
-      <div class="placeholder">
-        Les témoignages d'étudiants seront ajoutés ici lors d'une prochaine session.
+
+      <p style="font-size:0.88rem;color:var(--col-hover);margin-bottom:24px;">
+        Extraits d'enquêtes de satisfaction menées auprès des étudiants (2025).
+        Les résultats complets sont disponibles sur demande.
+      </p>
+
+      <div class="year-label">2025</div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme</span>
+          <span class="testimonial-role">Bachelier en immobilier — HE2B ISES</span>
+          <span class="testimonial-date">2025</span>
+        </div>
+        <p class="testimonial-quote">
+          « J'aimerais bien avoir des chatbots pour des cours complexes qui comportent beaucoup
+          de matière, car cela va faciliter la compréhension et la manière dont on peut étudier
+          cette information. »
+        </p>
+        <p style="font-size:0.78rem;color:var(--col-hover);margin-top:8px;font-style:normal;">
+          Enquête de satisfaction relative à l'utilisation de chatbots de révision de matières
+          juridiques — 20 étudiants sondés, 100 % réclament des chatbots pour d'autres matières.
+        </p>
       </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme</span>
+          <span class="testimonial-role">Bachelier en droit — HE2B ISES</span>
+          <span class="testimonial-date">2025</span>
+        </div>
+        <p class="testimonial-quote">
+          « Merci pour votre implication dans l'évolution de notre bachelier ainsi que pour vos
+          schémas (lire cartes mentales) !! J'espère vous retrouver dans la suite de notre bachelier. »
+        </p>
+        <p style="font-size:0.78rem;color:var(--col-hover);margin-top:8px;font-style:normal;">
+          Enquête de satisfaction relative au cours de Droit du travail.
+        </p>
+      </div>
+
     </div><!-- /subtab-etu -->
 
+    <!-- SOUS-ONGLET AUTRES PROFESSIONNELS -->
+    <div id="subtab-autres" class="subtab-pane">
+      <div class="placeholder">
+        Les témoignages d'autres professionnels de l'éducation seront ajoutés ici.
+      </div>
+    </div><!-- /subtab-autres -->
+
   </section>
+
+  <!-- TAB CONTACT -->
+  <section id="tab-contact" class="tab-content">
+    <h1>Contact</h1>
+    <div class="page-subtitle">Prenez contact avec moi</div>
+
+    <div class="contact-wrapper">
+      <p style="margin-bottom:28px; font-size:0.92rem; color:var(--col-hover);">
+        Remplissez le formulaire ci-dessous. Votre application de messagerie s'ouvrira
+        avec les champs pré-remplis — il ne vous restera qu'à envoyer.
+      </p>
+
+      <form class="contact-form" onsubmit="sendContact(event)">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Prénom</label>
+            <input class="form-input" type="text" id="cf-prenom" placeholder="Votre prénom" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nom</label>
+            <input class="form-input" type="text" id="cf-nom" placeholder="Votre nom" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Adresse e-mail</label>
+          <input class="form-input" type="email" id="cf-email" placeholder="votre@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Objet</label>
+          <input class="form-input" type="text" id="cf-objet" placeholder="Objet de votre message" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Votre demande</label>
+          <textarea class="form-input form-textarea" id="cf-message"
+            placeholder="Décrivez votre demande..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-send">↗ Envoyer le message</button>
+
+      </form>
+
+      <p style="margin-top:14px; font-size:0.8rem; color:var(--col-hover); font-style:italic;">
+        Ce bouton ouvrira votre application de messagerie avec les informations pré-remplies.
+      </p>
+    </div>
+  </section>
+
 
 </main>
 
@@ -1095,6 +1332,20 @@
     // Update URL hash without scrolling
     history.replaceState(null, '', '#' + id);
     return false;
+  }
+
+
+  // ─── FORMULAIRE CONTACT ───
+  function sendContact(e) {
+    e.preventDefault();
+    const prenom = document.getElementById('cf-prenom').value;
+    const nom    = document.getElementById('cf-nom').value;
+    const email  = document.getElementById('cf-email').value;
+    const objet  = document.getElementById('cf-objet').value;
+    const msg    = document.getElementById('cf-message').value;
+    const body   = `Prénom : ${prenom}\nNom : ${nom}\nE-mail : ${email}\n\n${msg}`;
+    window.location.href =
+      `mailto:ilemineur@he2b.be?subject=${encodeURIComponent(objet)}&body=${encodeURIComponent(body)}`;
   }
 
   // ─── SOUS-ONGLETS ───
