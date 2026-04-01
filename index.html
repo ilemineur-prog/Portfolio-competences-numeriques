@@ -713,6 +713,95 @@
     }
     .btn-send:hover { background: var(--col-active-bg); color: var(--col-active); }
 
+
+    /* ─── LETTRES DE RECOMMANDATION (cartes) ─── */
+    .rec-letter {
+      background: white;
+      border: 1px solid var(--col-divider);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      margin-bottom: 24px;
+    }
+    .rec-letter-header {
+      display: flex;
+      align-items: stretch;
+    }
+    .rec-letter-preview {
+      flex: 0 0 160px;
+      border-right: 1px solid var(--col-divider);
+    }
+    .rec-letter-preview iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
+      display: block;
+    }
+    .rec-letter-body {
+      flex: 1;
+      padding: 22px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .rec-letter-author {
+      font-family: var(--font);
+      font-size: 1.05rem;
+      color: var(--col-heading);
+    }
+    .rec-letter-role {
+      font-size: 0.82rem;
+      color: var(--col-hover);
+      font-style: italic;
+    }
+    .rec-letter-date {
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+    .rec-letter-summary {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--col-body);
+      font-style: italic;
+      border-left: 3px solid var(--col-accent);
+      padding-left: 12px;
+      margin: 6px 0;
+    }
+    .rec-letter-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .rec-letter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      font-size: 0.82rem;
+      border-radius: 2px;
+      transition: all 0.2s;
+      text-decoration: none;
+      border-bottom: none !important;
+    }
+    .rec-letter-btn-primary {
+      background: var(--col-sidebar);
+      color: #EDE5D8 !important;
+    }
+    .rec-letter-btn-primary:hover {
+      background: var(--col-active-bg);
+      color: var(--col-active) !important;
+    }
+    .rec-letter-btn-secondary {
+      background: transparent;
+      color: var(--col-link) !important;
+      border: 1px solid var(--col-divider) !important;
+    }
+    .rec-letter-btn-secondary:hover {
+      color: var(--col-link-hov) !important;
+      border-color: var(--col-link-hov) !important;
+    }
+
     /* ─── PLACEHOLDER ─── */
     .placeholder {
       padding: 40px;
@@ -764,7 +853,7 @@
       <span class="nav-num">04</span>Compétences numériques &amp; IA
     </a>
     <a onclick="showTab('recommandations')" href="#recommandations">
-      <span class="nav-num">05</span>Lettres de recommandation
+      <span class="nav-num">05</span>Recommandations
     </a>
     <a onclick="showTab('contact')" href="#contact">
       <span class="nav-num">✉</span>Contact
@@ -811,7 +900,7 @@
 
       <div class="home-card" onclick="showTab('recommandations')" role="button" tabindex="0">
         <div class="home-card-num">05</div>
-        <div class="home-card-title">Lettres de recommandation</div>
+        <div class="home-card-title">Recommandations</div>
         <div class="home-card-desc">Témoignages et recommandations</div>
       </div>
 
@@ -985,6 +1074,46 @@
       l'ouvrir dans un nouvel onglet.
     </p>
 
+
+
+    <div class="genially-block">
+      <p>
+        Présentation interactive réalisée dans le cadre du parcours
+        <strong>Référent·e IA en éducation</strong> (AI4EDU — TechnofuturTIC).
+      </p>
+      <a class="external-link-btn"
+         href="https://view.genially.com/69ca7d2d1a9848441498810b"
+         target="_blank" rel="noopener">
+        ↗ Ouvrir le dossier Genially
+      </a>
+      <div class="iframe-container" style="margin-top:16px;">
+        <iframe
+          src="https://view.genially.com/69ca7d2d1a9848441498810b"
+          title="Présentation interactive IA — Isabelle Lemineur"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="genially-block">
+      <p>
+        Présentation interactive réalisée dans le cadre du parcours
+        <strong>Référent·e IA en éducation</strong> (AI4EDU — TechnofuturTIC).
+      </p>
+      <a class="external-link-btn"
+         href="https://view.genially.com/69ca7d2d1a9848441498810b"
+         target="_blank" rel="noopener">
+        ↗ Ouvrir le dossier Genially
+      </a>
+      <div class="iframe-container" style="margin-top:16px;">
+        <iframe
+          src="https://view.genially.com/69ca7d2d1a9848441498810b"
+          title="Présentation interactive IA — Isabelle Lemineur"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
     <div class="genially-block">
       <p>
         Référentiel interactif de mes <strong>compétences numériques</strong>
@@ -1007,14 +1136,14 @@
 
   <!-- TAB 5 : LETTRES DE RECOMMANDATION -->
   <section id="tab-recommandations" class="tab-content">
-    <h1>Lettres de recommandation</h1>
+    <h1>Recommandations</h1>
     <div class="page-subtitle">Témoignages et recommandations</div>
 
 
     <div class="subtab-nav">
-      <button class="subtab-btn active" onclick="showSubtab(this,'ens')">Enseignants</button>
-      <button class="subtab-btn" onclick="showSubtab(this,'etu')">Étudiants</button>
-      <button class="subtab-btn" onclick="showSubtab(this,'autres')">Autres professionnels</button>
+      <button class="subtab-btn active" onclick="showSubtab(this,'ens')">Avis spontanés des enseignants</button>
+      <button class="subtab-btn" onclick="showSubtab(this,'etu')">Témoignages d'étudiants</button>
+      <button class="subtab-btn" onclick="showSubtab(this,'autres')">Lettres de recommandation de professionnels</button>
     </div>
 
     <!-- SOUS-ONGLET ENSEIGNANTS -->
@@ -1211,11 +1340,12 @@
     <div id="subtab-etu" class="subtab-pane">
 
       <p style="font-size:0.88rem;color:var(--col-hover);margin-bottom:24px;">
-        Extraits d'enquêtes de satisfaction menées auprès des étudiants (2025).
+        Extraits d'enquêtes de satisfaction menées auprès des étudiants (2023–2025).
         Les résultats complets sont disponibles sur demande.
       </p>
 
-      <div class="year-label">2025</div>
+      <!-- ── HE2B ISES 2025 ── -->
+      <div class="year-label">2025 — HE2B ISES</div>
 
       <div class="testimonial">
         <div class="testimonial-meta">
@@ -1249,13 +1379,468 @@
         </p>
       </div>
 
+      <!-- ── UMONS 2024-2025 ── -->
+      <div class="year-label">2024–2025 — UMons · Méthodologie juridique</div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E1)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2024–2025</span>
+        </div>
+        <p class="testimonial-quote">Vos vidéos et vos cartes mentales sur l'UV aident beaucoup à la compréhension.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E2)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2024–2025</span>
+        </div>
+        <p class="testimonial-quote">Assister aux cours, réaliser les exercices en ligne et lire les diaporamas.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E3)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2024–2025</span>
+        </div>
+        <p class="testimonial-quote">Le fait que nous ayons accès aux livres tout le temps aide énormément.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E4)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2024–2025</span>
+        </div>
+        <p class="testimonial-quote">Les Wooflash et les conférences. Le syllabus des cartes mentales est vraiment bien fait et utile.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E6)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2024–2025</span>
+        </div>
+        <p class="testimonial-quote">Les syllabi d'exercices et les multiples vidéos explicatives pour chaque sujet.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E9)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2024–2025</span>
+        </div>
+        <p class="testimonial-quote">Les Genially sont très bien faits et nous ont beaucoup aidés.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E10)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2024–2025</span>
+        </div>
+        <p class="testimonial-quote">L'ensemble des ressources postées sur l'UV m'ont énormément aidé dans l'apprentissage de ce cours !</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E11)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2024–2025</span>
+        </div>
+        <p class="testimonial-quote">De nombreux supports sont mis à disposition (slides interactives, mindmap, syllabus, etc.). De nombreux exercices sont disponibles, ce qui rend le cours plus vivant et moins théorique.</p>
+      </div>
+
+      <p style="font-size:0.78rem;color:var(--col-hover);margin-top:8px;font-style:normal;">
+        Enquête de satisfaction — cours de Méthodologie juridique, UMons.
+        8 réponses sélectionnées (réponses vides exclues) sur 11 répondants. Résultats complets disponibles sur demande.
+      </p>
+
+      <!-- ── UMONS 2023-2024 ── -->
+      <div class="year-label">2023–2024 — UMons · Méthodologie juridique</div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E1)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">L'ensemble des éléments mis à disposition.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E3)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Très disponible, proche des étudiants et donne des conseils précieux. Les exercices sur Wooflash sont très utiles, c'est une très bonne idée.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E5)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Toute la documentation qu'elle offre à tous les étudiants, ça aide beaucoup. Les conférences qu'elle organise aussi, ça permet d'avoir une vision concrète de ce qu'on étudie.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E7)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Je pense que les mind maps proposés sont vraiment super, tous ces liens créés ainsi que les vidéos sont très claires, très dynamiques et faciles à la compréhension !</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E8)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Sur l'université virtuelle, nous avons accès à beaucoup d'outils qui nous aident dans nos apprentissages et notre compréhension. De plus, pour les personnes qui ne peuvent pas assister aux cours, ils ont à disposition tout ce dont ils pourraient avoir besoin.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E9)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les multiples PowerPoints.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E10)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les mind maps mis à disposition m'ont plus qu'aidé à assimiler la matière.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E11)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Le fait de s'exercer.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E12)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les cartes mentales et les notes du professeur sur les (éventuelles) conférences du deuxième quadrimestre.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E13)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les exercices sur l'UV, les vidéos explicatives et les mind maps.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E14)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les exercices pour s'entraîner et les vidéos.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E16)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les exercices et les vidéos.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E17)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Le cours est très bien organisé et madame Lemineur est très patiente et disponible pour aider les élèves.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E18)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">La manière dont le cours est organisé, ainsi que la délimitation de la matière pour les examens.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E19)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">La clarté vis-à-vis des objectifs de l'examen.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E20)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Le cours oral, ainsi que l'ensemble des exercices mis à notre disposition sur Wooflash, m'ont permis d'acquérir une excellente maîtrise de la matière. Ces outils pédagogiques se sont révélés particulièrement efficaces pour renforcer ma compréhension et favoriser un apprentissage en profondeur. Par ailleurs, les cartes mentales proposées permettent une identification claire des notions essentielles, ce qui contribue à structurer l'information et à simplifier davantage l'apprentissage.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E22)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les vidéos mises en ligne m'ont beaucoup aidé quand je faisais les exercices par moi-même. J'ai aussi beaucoup aimé les tutorats ; les tuteurs nous aidaient beaucoup et donnaient des conseils individuels, ce qui m'a beaucoup aidé.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E23)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Le fait d'avoir un support de cours et des exercices sur la matière à connaître.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E24)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Tous les supports de cours sont bien.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E25)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les aides sur l'université virtuelle sont bien expliquées et permettent d'apprendre correctement. Madame Lemineur est très à l'écoute, disponible et ne s'éloigne pas de son sujet principal, ce qui permet de rester concentré. Les supports de cours sont très bien expliqués et comportent toute la matière.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E26)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Le cours mis à disposition sur l'UV est très bien organisé ; je remercie le professeur pour le temps qu'il a passé à l'organiser. Il est impossible de ne pas savoir ce qu'il faut étudier ou de ne pas comprendre, étant donné que pour chaque point de matière une explication théorique est disponible sur l'UV, et que les cours renvoyant directement à ces explications théoriques sont également disponibles.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E27)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les remédiations m'ont aidé, et aussi les conférences. Le fait qu'on peut tout retrouver sur l'UV si on est absent, je trouve ça vraiment génial ; c'est plus facile pour se remettre en ordre.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E28)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">La très grande quantité d'exercices en ligne qui sont proposés par Mme Lemineur.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E29)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les exercices Wooflash et les vidéos YouTube sont vraiment un vrai plus à ce cours, qui permet de réussir haut la main.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E30)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Sa très bonne structure, sa proximité avec les étudiants et toutes ses mind maps qui m'ont été plus qu'utiles durant toute cette année !</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E31)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Le cours est très bien organisé, avec suffisamment de ressources pour bien se préparer aux examens. De plus, le grand nombre d'exercices proposés aide vraiment à comprendre et à assimiler les notions. Ces éléments devraient être conservés pour les prochaines sessions.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E32)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Le cours est très bien organisé (le cours en amphi ainsi que sur l'université virtuelle). L'enseignante nous donne accès à de nombreuses vidéos qui expliquent comment faire les références ainsi que les recherches. Nous avons également un syllabus de cartes mentales.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E34)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Je pense que c'est le cours qui est le mieux mis en place ; il n'a besoin de rien de plus.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E35)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Mindmap super.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E36)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les mindmaps et nombreux exercices.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E37)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">L'examen blanc était une super idée. Tous les outils nécessaires nous étaient fournis par la professeure, donc nous avions tout à notre disposition.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E38)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Madame Lemineur met des slides à notre disposition et elles sont très utiles.</p>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-meta">
+          <span class="testimonial-author">Étudiant·e — enquête anonyme (E39)</span>
+          <span class="testimonial-role">Bac en droit — Université de Mons</span>
+          <span class="testimonial-date">2023–2024</span>
+        </div>
+        <p class="testimonial-quote">Les vidéos explicatives de Madame Lemineur, très utiles et pratiques pour préparer l'examen.</p>
+      </div>
+
+      <p style="font-size:0.78rem;color:var(--col-hover);margin-top:8px;font-style:normal;">
+        Enquête de satisfaction — cours de Méthodologie juridique, UMons.
+        30 réponses sélectionnées (réponses vides exclues) sur 39 répondants. Résultats complets disponibles sur demande.
+      </p>
+
     </div><!-- /subtab-etu -->
 
-    <!-- SOUS-ONGLET AUTRES PROFESSIONNELS -->
+    <!-- SOUS-ONGLET LETTRES DE RECOMMANDATION DE PROFESSIONNELS -->
     <div id="subtab-autres" class="subtab-pane">
-      <div class="placeholder">
-        Les témoignages d'autres professionnels de l'éducation seront ajoutés ici.
+
+      <p style="font-size:0.88rem;color:var(--col-hover);margin-bottom:28px;">
+        Lettres de recommandation reçues de professionnels de l'éducation et du numérique (mars 2026).
+      </p>
+
+      <!-- Lettre 1 : Laumonier -->
+      <div class="rec-letter">
+        <div class="rec-letter-header">
+          <div class="rec-letter-preview">
+            <iframe src="recommandation_laumonier.pdf"
+                    title="Lettre de recommandation — Catherine Laumonier"
+                    loading="lazy"></iframe>
+          </div>
+          <div class="rec-letter-body">
+            <div class="rec-letter-author">Catherine Laumonier, PhD</div>
+            <div class="rec-letter-role">Conseillère en technopédagogie<br>
+              Service d'Appui Pédagogique (SAP) — Université de Mons</div>
+            <div class="rec-letter-date">Mars 2026</div>
+            <p class="rec-letter-summary">
+              « Son profil allie de manière exemplaire compétences techniques,
+              sens pédagogique et leadership collaboratif. Je recommande sans réserve
+              Isabelle Lemineur pour tout projet lié à l'intégration du numérique
+              et de l'IA dans l'enseignement supérieur. »
+            </p>
+            <div class="rec-letter-actions">
+              <a class="rec-letter-btn rec-letter-btn-primary"
+                 href="recommandation_laumonier.pdf" target="_blank" rel="noopener">
+                ↗ Ouvrir en plein écran
+              </a>
+              <a class="rec-letter-btn rec-letter-btn-secondary"
+                 href="recommandation_laumonier.pdf"
+                 download="Recommandation_Laumonier_Isabelle_Lemineur.pdf">
+                ↓ Télécharger
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Lettre 2 : Bolle -->
+      <div class="rec-letter">
+        <div class="rec-letter-header">
+          <div class="rec-letter-preview">
+            <iframe src="recommandation_bolle.pdf"
+                    title="Lettre de recommandation — Jean-Philippe Bolle"
+                    loading="lazy"></iframe>
+          </div>
+          <div class="rec-letter-body">
+            <div class="rec-letter-author">Jean-Philippe Bolle</div>
+            <div class="rec-letter-role">Cofondateur — PedagokIT asbl<br>
+              Formateur AI4EDU — TechnofuturTIC</div>
+            <div class="rec-letter-date">Mars 2026</div>
+            <p class="rec-letter-summary">
+              « Veille technologique active, usage avancé de l'IA générative,
+              conception de ressources pédagogiques numériques… Isabelle Lemineur
+              incarne l'enseignante-chercheuse engagée dans la transformation
+              pédagogique par le numérique. »
+            </p>
+            <div class="rec-letter-actions">
+              <a class="rec-letter-btn rec-letter-btn-primary"
+                 href="recommandation_bolle.pdf" target="_blank" rel="noopener">
+                ↗ Ouvrir en plein écran
+              </a>
+              <a class="rec-letter-btn rec-letter-btn-secondary"
+                 href="recommandation_bolle.pdf"
+                 download="Recommandation_Bolle_Isabelle_Lemineur.pdf">
+                ↓ Télécharger
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /subtab-autres -->
 
   </section>
